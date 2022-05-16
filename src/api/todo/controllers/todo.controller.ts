@@ -10,16 +10,15 @@ export class TodoController {
         private readonly todoService: TodoService) { }
 
 
-    @Get('/all')
+    @Get('/')
     async getAll(@Res() res): Promise<Todo[]> {
         try {
             const todos = await this.todoService.getAll()
             return res.status(HttpStatus.OK).json({
-                ...todos
+                todos
             });
         } catch (err) {
             return res.status(HttpStatus.BAD_REQUEST).json({
-                statusCode: HttpStatus.BAD_REQUEST,
                 message: err
             })
         }
@@ -39,10 +38,9 @@ export class TodoController {
         }
     }
 
-    @Post('/add')
+    @Post('/')
     async create(@Res() res, @Body() data: CreateTodoDto): Promise<CreateTodoDto> {
         try {
-        
             const todo = await this.todoService.create(data);
             return res.status(HttpStatus.OK).json({
                 todo,
@@ -52,6 +50,24 @@ export class TodoController {
             return res.status(HttpStatus.BAD_REQUEST).json({
                 message: err
             })
+        }
+    }
+
+    @Put(':id/update')
+    async update(@Res() res, @Param('id') id: string, @Body() todo: UpdateTodoDto): Promise<UpdateTodoDto> {
+        try {
+            todo.id = id;
+            await this.todoService.update(todo)
+            return res.status(HttpStatus.OK).json({
+                todo,
+                message: `Todo successfully updated`
+            });
+        }
+        catch (err) {
+            return res.status(HttpStatus.BAD_REQUEST).json({
+                message: err
+            })
+
         }
     }
 
@@ -85,26 +101,6 @@ export class TodoController {
 
         }
     }
-
-
-    @Put(':id/update')
-    async update(@Res() res, @Param('id') id: string, @Body() todo: UpdateTodoDto): Promise<UpdateTodoDto> {
-        try {
-            todo.id = id;
-            await this.todoService.update(todo)
-            return res.status(HttpStatus.OK).json({
-                todo,
-                message: `Todo successfully updated`
-            });
-        }
-        catch (err) {
-            return res.status(HttpStatus.BAD_REQUEST).json({
-                message: err
-            })
-
-        }
-    }
-
 
 }
 

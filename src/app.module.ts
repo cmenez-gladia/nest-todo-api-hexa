@@ -8,7 +8,6 @@ import { TodosModule} from './api/todo/todo.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot(ORMConfig),
-    ConfigModule.forRoot(),
     TodosModule
   ],
 })
