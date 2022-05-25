@@ -1,14 +1,15 @@
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { ORMConfig } from './ormConfig';
-import { ConfigModule } from '@nestjs/config';
+import { Logger, Module } from '@nestjs/common';
 import { TodosModule} from './api/todo/todo.module';
+import { DatabaseModule } from './database/database.module';
 
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot(ORMConfig),
+    DatabaseModule,
     TodosModule
   ],
 })
-export class AppModule {}
+export class AppModule {
+  private readonly logger = new Logger(AppModule.name);
+
+}
