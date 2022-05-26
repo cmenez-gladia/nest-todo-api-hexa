@@ -24,18 +24,19 @@ export class TodoController {
         private readonly deleteTodoUsecase: DeleteTodoUseCase,
         private readonly deleteAllTodoUsecase: DeleteAllTodosUseCase) { }
 
-
+    // je ferais un output Promise<TodoDto[]>
     @Get('/')
     async getAll(@Res() res) {
 
         const todos = await this.getAllTodoUseCase.execute();
-        console.log('getAll '+ todos);
+        console.log('getAll ' + todos);
         return res.status(HttpStatus.OK).json({
             todos
         });
 
     }
 
+    // je ferais un output Promise<TodoDto>
     @Get(':id')
     async get(@Res() res, @Param('id') id: number) {
 
@@ -46,6 +47,7 @@ export class TodoController {
 
     }
 
+    // je ferais un output Promise<TodoDto>
     @Post('/')
     async create(@Res() res, @Body() data: CreateTodoDto) {
         const Todo = CreateTodoDto.fromDto(data)
@@ -58,6 +60,7 @@ export class TodoController {
 
     }
 
+    // je ferais un output Promise<TodoDto>
     @Put(':id/update')
     async update(@Res() res, @Param('id') id: number, @Body() data: UpdateTodoDto) {
         const Todo = UpdateTodoDto.fromDto(data)

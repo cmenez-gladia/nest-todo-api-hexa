@@ -1,5 +1,5 @@
 import { IsString, IsNotEmpty } from 'class-validator';
-import { Todo } from 'src/api/todo/01-domain/todo.entity';
+import { Todo } from '../../../../../api/todo/01-domain/todo.entity';
 
 export class UpdateTodoDto {
 

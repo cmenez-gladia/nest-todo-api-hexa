@@ -11,7 +11,7 @@ export class GetAllTodosUseCase {
   constructor(@Inject('TodoRepository') private todoRepository: ITodoRepository) { }
 
   public async execute(): Promise<Todo[]>{
-
+     // je prefere faire deux lignes avec deux await differents
      return await (await this.todoRepository.getAll()).map(el=> TodoPostgreSingleton.toDomain(el));
   } 
 }

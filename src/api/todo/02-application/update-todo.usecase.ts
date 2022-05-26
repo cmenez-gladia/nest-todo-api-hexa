@@ -1,10 +1,9 @@
 import { Inject, Logger } from '@nestjs/common';
 import { Todo } from '../01-domain/todo.entity';
 import { TodoPostgreSingleton } from '../03-infrastructure/server-adapter/todo.mapper.postgres';
-import { UpdateTodoDto } from '../03-infrastructure/user-adapter/dto/updateTodo.dto';
 import { ITodoRepository } from './ports/todo.repository';
-import { TodoMapper } from './todo-mapper';
 
+// n'oublie de remove les unuse imports
 export class UpdateTodoUseCase {
 
   private readonly logger = new Logger(UpdateTodoUseCase.name);

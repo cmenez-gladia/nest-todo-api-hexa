@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { Todo } from "../01-domain/todo.entity";
 
-
+// class a enlever
 export class TodoMapper  {
 
 toDomain(raw: Record<number, any>): Todo {

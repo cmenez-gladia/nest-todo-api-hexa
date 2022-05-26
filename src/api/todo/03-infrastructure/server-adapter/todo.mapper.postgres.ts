@@ -21,4 +21,5 @@ export class TodoMapper implements Mapper<Todo> {
   }
 }
 
+// c est une instance donc TodoPostgreSingleton => todoPostgreSingleton
 export const TodoPostgreSingleton = new TodoMapper();
